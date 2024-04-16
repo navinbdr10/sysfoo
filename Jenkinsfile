@@ -1,3 +1,4 @@
+
 pipeline {
   agent any
   stages {
@@ -5,8 +6,8 @@ pipeline {
       steps {
         echo 'compileing the code....'
         sh 'mvn compile'
-      }
-    }
+            }
+                  }
 
     stage('test') {
       parallel {
@@ -41,8 +42,10 @@ pipeline {
             sleep 5
           }
         }
+      }
 
 
+  }
   }
   tools {
     maven 'Maven 3.6.3'
