@@ -9,9 +9,20 @@ pipeline {
     }
 
     stage('test') {
-      steps {
-        echo 'running unit test....'
-        sh 'mvn clean test'
+      parallel {
+        stage('test') {
+          steps {
+            echo 'running unit test....'
+            sh 'mvn clean test'
+          }
+        }
+
+        stage('testC') {
+          steps {
+            sleep 5
+          }
+        }
+
       }
     }
 
@@ -31,8 +42,6 @@ pipeline {
           }
         }
 
-      }
-    }
 
   }
   tools {
