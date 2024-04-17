@@ -27,7 +27,7 @@ pipeline {
       }
     }
 
-    stage('package') {
+    stage('package and publish') {
       parallel {
         stage('package') {
           agent {
@@ -46,7 +46,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('Docker Build and Publish') {
           steps {
             script {
               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
