@@ -28,6 +28,9 @@ pipeline {
     }
 
     stage('package and publish') {
+      when {
+            branch 'master'
+          }
       parallel {
         stage('package') {
           agent {
@@ -36,9 +39,7 @@ pipeline {
             }
 
           }
-          when {
-            branch 'master'
-          }
+          
           steps {
             echo 'generating the artifacts....'
             sh 'mvn package -DskipTests'
